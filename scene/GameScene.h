@@ -9,6 +9,7 @@
 #include "Sprite.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
+#include "DebugCamera.h"
 
 /// <summary>
 /// ゲームシーン
@@ -46,6 +47,23 @@ class GameScene {
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
 	DebugText* debugText_ = nullptr;
+	uint32_t textureHandle_ = 0;
+	WorldTransform worldTransform_[2];
+	ViewProjection viewProjection_;
+	Model* model_ = nullptr;
+	DebugCamera* debugCamera_ = nullptr;
+	float scaleX = 1;
+	float scaleY = 1;
+	float scaleZ = 1;
+	Vector4 redNum = { 1,0,0,1 };
+	Vector4 blueNum = { 0,0,1,1 };
+	Vector3 p1[100];
+	Vector3 p2[100];
+	Vector3 p3[100];
+	Vector3 p4[100];
+	float addNum = 0;
+
+	uint32_t scene = 0;
 
 	/// <summary>
 	/// ゲームシーン用
