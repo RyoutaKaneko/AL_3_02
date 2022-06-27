@@ -1,21 +1,23 @@
 ﻿#pragma once
-/// <summary>
-/// 行列
-/// </summary>
+
 class Matrix4 {
-  public:
-	// 行x列
+	//メンバ変数
+public:
 	float m[4][4];
 
-	// コンストラクタ
-	Matrix4();
-	// 成分を指定しての生成
-	Matrix4(
-	  float m00, float m01, float m02, float m03,
-	  float m10, float m11, float m12, float m13,
-	  float m20, float m21, float m22, float m23,
-	  float m30, float m31, float m32, float m33);
+	//メンバ関数
+public:
+	Matrix4();		//コンストラクタ
+	~Matrix4();		//デストラクタ
 
-	// 代入演算子オーバーロード
+	Matrix4(			//成分を指定しての生成
+		float mat00, float mat01, float mat02, float mat03,
+		float mat10, float mat11, float mat12, float mat13,
+		float mat20, float mat21, float mat22, float mat23,
+		float mat30, float mat31, float mat32, float mat33
+	);
+
+	//代入演算子オーバーロード
 	Matrix4& operator*=(const Matrix4& m2);
+	Matrix4 operator*(const Matrix4& m2);
 };
