@@ -33,6 +33,11 @@ class GameScene {
 	void Initialize();
 
 	/// <summary>
+	/// ラジアン変換
+	/// </summary>
+	float Radian(float num);
+
+	/// <summary>
 	/// 毎フレーム処理
 	/// </summary>
 	void Update();
@@ -62,6 +67,20 @@ class GameScene {
 	Vector3 p3[100];
 	Vector3 p4[100];
 	float addNum = 0;
+
+	//バネ
+	Vector3 v[2];
+	Vector3 a[2];
+	Vector3 force[2];
+	Vector3 point = { 0,5,0 };
+	float gravity[2]{1.0f,0.5f};
+	float mass = 4.0f;
+	float stiffness = 0.1f;
+	float damping = 0.93f;
+	Matrix4 matTrans[2];
+
+	uint32_t mario = 0;
+
 
 	uint32_t scene = 0;
 
