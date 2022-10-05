@@ -32,16 +32,16 @@ void GameScene::Initialize() {
 	worldTransform_[0].Initialize();
 	worldTransform_[1].Initialize();
 	viewProjection_.Initialize();
-	viewProjection_.eye = { 0,15,-50 };
+	viewProjection_.eye = { 0,25,-15 };
 	viewProjection_.UpdateMatrix();
-	//デバックカメラの生成
-	debugCamera_ = new DebugCamera(1280, 720);
+	////デバックカメラの生成
+	//debugCamera_ = new DebugCamera(1280, 720);
 	//軸方向の表示を有効にする
-	AxisIndicator::GetInstance()->SetVisible(true);
-	//軸方向表示が参照するビュープロジェクションを指定する(アドレス渡し)
-	AxisIndicator::GetInstance()->SetTargetViewProjection(&debugCamera_->GetViewProjection());
-	//ライン描画
-	PrimitiveDrawer::GetInstance()->SetViewProjection(&debugCamera_->GetViewProjection());
+	/*AxisIndicator::GetInstance()->SetVisible(true);*/
+	////軸方向表示が参照するビュープロジェクションを指定する(アドレス渡し)
+	//AxisIndicator::GetInstance()->SetTargetViewProjection(&debugCamera_->GetViewProjection());
+	////ライン描画
+	//PrimitiveDrawer::GetInstance()->SetViewProjection(&debugCamera_->GetViewProjection());
 }
 
 void GameScene::Update() {
@@ -266,7 +266,7 @@ void GameScene::Update() {
 	debugText_->SetPos(0, 0);
 	debugText_->Printf("%d", scene);
 
-	debugCamera_->Update();
+	/*debugCamera_->Update();*/
 }
 
 void GameScene::Draw() {
@@ -295,13 +295,13 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-	model_->Draw(worldTransform_[0], debugCamera_->GetViewProjection(), textureHandle_);
-	model_->Draw(worldTransform_[1], debugCamera_->GetViewProjection(), textureHandle_);
+	model_->Draw(worldTransform_[0], viewProjection_, textureHandle_);
+	model_->Draw(worldTransform_[1], viewProjection_, textureHandle_);
 
-	for (int i = 0; i < 100; i++) {
-		PrimitiveDrawer::GetInstance()->DrawLine3d(p1[i], p2[i], redNum);
-		PrimitiveDrawer::GetInstance()->DrawLine3d(p3[i], p4[i], blueNum);
-	}
+	//for (int i = 0; i < 100; i++) {
+	//	PrimitiveDrawer::GetInstance()->DrawLine3d(p1[i], p2[i], redNum);
+	//	PrimitiveDrawer::GetInstance()->DrawLine3d(p3[i], p4[i], blueNum);
+	//}
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
